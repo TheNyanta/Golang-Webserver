@@ -1,14 +1,12 @@
-# GO_WEB_SERVER## Dependencies
+# Golang Webserver
+
+## Dependencies
 `go get "github.com/fasthttp/router"`
-
-### MySQL
-
-`go get "github.com/go-sql-driver/mysql"`
 
 ## Build
 Call `go build` in the main folder and get your executable.
 
-## Installing GO
+## Installing Golang
 ## Easy way for Ubuntu
 Get it from the Ubuntu Software Store
 ## General
