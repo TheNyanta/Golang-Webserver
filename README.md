@@ -1,5 +1,7 @@
 # Golang Webserver
 
+Demo code for: Routing, Serving Files and a simple Post-Request-Response example.
+
 ## Dependencies
 `go get "github.com/fasthttp/router"`
 
