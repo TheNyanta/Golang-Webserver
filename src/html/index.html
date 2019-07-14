@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<title>Go Webserver</title>
+</head>
+<body>
+<h1>Go Webserver</h1>
+<form action="javascript:submit()">
+  First name:<br>
+  <input type="text" value="Mickey" id="name">
+  <br>
+  <input type="submit" value="Submit">
+</form> 
+<p id="demo"></p>
+<img src="/img.png">
+<a href="/link">Link</a>
+
+<script>
+function submit() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "/submit", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("firstname="+document.getElementById("name").value+"&lastname=Demo");
+}
+
+</script>
+</body>
