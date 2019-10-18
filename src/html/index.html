@@ -7,12 +7,13 @@
 <h1>Go Webserver</h1>
 <form action="javascript:submit()">
   First name:<br>
-  <input type="text" value="Mickey" id="name">
+  <input type="text" value="Mike" id="name">
   <br>
   <input type="submit" value="Submit">
 </form> 
 <p id="demo"></p>
-<img src="/img.png">
+<img src="/img/img.png">
+<br>
 <a href="/link">Link</a>
 
 <script>
@@ -25,7 +26,7 @@ function submit() {
   };
   xhttp.open("POST", "/submit", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("firstname="+document.getElementById("name").value+"&lastname=Demo");
+  xhttp.send("firstname="+document.getElementById("name").value+"&lastname=Marley");
 }
 
 </script>
