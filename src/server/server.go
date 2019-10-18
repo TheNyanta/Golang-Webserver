@@ -24,17 +24,13 @@ func Link(ctx *fasthttp.RequestCtx) {
 	ctx.Write([]byte("<a href='/'>Back</a>"))
 }
 
-func ImgUid(ctx *fasthttp.RequestCtx) {
+func GetResource(ctx *fasthttp.RequestCtx) {
 	log.Println(string(ctx.RequestURI()))
 	var uriSegements = strings.Split(string(ctx.RequestURI()), "/")
-	var uid = uriSegements[len(uriSegements)-1]
-
-	ctx.Write([]byte(uid))
-}
-
-func GetImg(ctx *fasthttp.RequestCtx) {
-	log.Println("img.png")
-	fasthttp.ServeFile(ctx, "../html/img.png")
+	var imgfile = uriSegements[len(uriSegements)-1]
+	// Path where the public resource files (i.e. images) are stored
+	var str = "../html/resources/" + imgfile
+	fasthttp.ServeFile(ctx, str)
 }
 
 func Submit(ctx *fasthttp.RequestCtx) {
@@ -42,7 +38,7 @@ func Submit(ctx *fasthttp.RequestCtx) {
 	log.Println(ctx.PostArgs())
 	//log.Println(ctx.FormValue("firstname"))
 	//log.Printf("Firstname = %s\n", ctx.FormValue("firstname"))
-	ctx.Write([]byte(ctx.FormValue("firstname")))
+	ctx.Write(append(ctx.FormValue("firstname"), " welcome!"...))
 }
 
 // Cross Origin Resource Sharing for Frontend-Backend-Communication
@@ -62,8 +58,7 @@ func Run() {
 	r.GET("/", Index)
 	r.GET("/link", Link)
 	r.POST("/submit", Submit)
-	r.GET("/img/:uid", ImgUid)
-	r.GET("/img.png", GetImg)
+	r.GET("/resources/:resource", GetResource)
 	// setting listening port
 	err := fasthttp.ListenAndServe(":8000", CORS(r.Handler))
 	// err := fasthttp.ListenAndServeTLS(":443", "cert.pem", "key.pem", CORS(r.Handler))
